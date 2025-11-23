@@ -1,0 +1,50 @@
+
+class ReportingService:
+    def _init_(self, registrar):
+         
+
+    def full_report(self):
+        print("=== Full University Report ===")
+        print("\n--- Courses ---")
+        for c in self.registrar.courses:
+            c.display_details() 
+
+        print("\n--- Lecturers ---")
+        for l in self.registrar.lecturers:
+            l.print_summary() 
+
+        print("\n--- Student Performance ---")
+        for s in self.registrar.students:
+            
+            print(s.calculate_performance_summary())
+
+class Registrar:
+    def _init_(self):
+        self.students = []
+        self.courses = []
+        self.lecturers = []
+
+    def add_student(self, s):
+        self.students.append(s)
+        print(f"Added student {s.name}")
+
+    
+    def get_data(self):
+        return {
+            'students': self.students,
+            'courses': self.courses,
+            'lecturers': self.lecturers
+        }
+    
+    
+    def full_report(self):
+        
+        service = ReportingService(self)
+        service.full_report()
+
+
+def main():
+    reg = Registrar()
+    
+
+    reg.full_report() 
